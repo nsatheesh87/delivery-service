@@ -13,14 +13,15 @@ class CreatePigeonTable extends Migration
      */
     public function up()
     {
-        Schema::create('pigeon', function (Blueprint $table) {
+        Schema::create('pigeons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('speed');
             $table->integer('range');
             $table->integer('cost');
             $table->integer('downtime');
-            $table->enum('is_active', ['0', '1'])->default('1');
+            $table->enum('availability', ['0', '1'])->default('1');
+            $table->integer('rest_count')->default('0');
             $table->timestamps();
         });
 
@@ -34,6 +35,6 @@ class CreatePigeonTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pigeon');
+        Schema::dropIfExists('pigeons');
     }
 }

@@ -17,6 +17,6 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix'=>'api/v1'], function () use ($router) {
 
-    $router->get('pigeon', ['uses' => 'PigeonController@index']);
+    $router->post('pigeon', ['uses' => 'PigeonController@createOrder']);
 
 });

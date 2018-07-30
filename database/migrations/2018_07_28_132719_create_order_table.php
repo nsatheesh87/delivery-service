@@ -13,15 +13,14 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pigeonId')->unsigned();
-            $table->string('distance');
-            $table->string('deadline');
-            $table->string('cost');
-            $table->string('downtime');
-            $table->enum('status', ['new', 'in-progress', 'completed', 'denied'])->default('new');
-            $table->foreign('pigeonId')->references('id')->on('pigeon');
+            $table->integer('pigeon_id')->unsigned();
+            $table->integer('distance');
+            $table->integer('deadline');
+            $table->integer('cost');
+            $table->enum('status', ['new', 'in-progress', 'completed'])->default('new');
+            $table->foreign('pigeon_id')->references('id')->on('pigeon');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
     }
 }
