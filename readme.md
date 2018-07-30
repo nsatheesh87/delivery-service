@@ -1,21 +1,53 @@
-# Lumen PHP Framework
+# Lumen PHP Framework - Delivery service and cost setup
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Step 1:
+```
+git clone https://github.com/nsatheesh87/delivery-service.git
+```
+Step 2:
+```
+cd working directory
+```
+step 3:
+```
+docker run --rm -v $(PWD):/app koutsoumpos89/composer-php7.1 install
+```
+step 4:
+```
+docker-compose up -d
+```
+step 5:
+```
+cp .env-example to .env
+```
+step 6:
+```
+docker-compose exec app php artisan migrate
+docker-compose exec app php artisan db:seed
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+```
 
-## Official Documentation
+Step 7: (To run phpunit test)
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+````
+docker run --rm -v /$(PWD):/app koutsoumpos89/composer-php7.1 vendor/bin/phpunit
+````
 
-## Security Vulnerabilities
+ HTTP endpoints:
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+- [POST `/api/vi/pigeon`: Submit the Order]
 
-## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+### Submit the deliver order
+
+Method:  
+ - `POST`
+
+Input body:  
+
+```json
+{
+	"distance":"600",
+	"deadline":"31/07/2018"
+}
+```
